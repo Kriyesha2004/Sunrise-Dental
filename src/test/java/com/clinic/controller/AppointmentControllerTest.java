@@ -48,6 +48,7 @@ public class AppointmentControllerTest {
         AppointmentRequest request = new AppointmentRequest();
         request.setPatientName("Test Patient");
         request.setPatientContact("0771112222");
+        request.setPatientEmail("john.doe@example.com");
         request.setDentistName("Dr. Smith");
         request.setTreatmentType("Cleaning");
         request.setAppointmentDate("2026-08-20");
@@ -71,13 +72,14 @@ public class AppointmentControllerTest {
         request.setPatientName("John Doe");
         request.setPatientAddress("Colombo");
         request.setPatientContact("0771234567");
+        request.setPatientEmail("john.doe@example.com");
         request.setDentistName("Dr. Smith");
         request.setTreatmentType("Cleaning");
         request.setAppointmentDate("2026-08-20");
         request.setAppointmentTime("10:00");
         request.setConsultationFee(new BigDecimal("30.00"));
 
-        Patient patient = new Patient("John Doe", "Colombo", "0771234567");
+        Patient patient = new Patient("John Doe", "Colombo", "0771234567", "john.doe@example.com");
         Appointment mockAppointment = new Appointment(
                 "APT1234",
                 patient,
@@ -90,7 +92,7 @@ public class AppointmentControllerTest {
         );
 
         when(appointmentService.registerAppointment(
-                eq("John Doe"), eq("Colombo"), eq("0771234567"),
+                eq("John Doe"), eq("Colombo"), eq("0771234567"), eq("john.doe@example.com"),
                 eq("Dr. Smith"), eq("Cleaning"), eq("2026-08-20"),
                 eq("10:00"), eq(new BigDecimal("30.00"))
         )).thenReturn(mockAppointment);
@@ -113,7 +115,7 @@ public class AppointmentControllerTest {
         MockHttpSession session = new MockHttpSession();
         session.setAttribute("user", sessionUser);
 
-        Patient patient = new Patient("John Doe", "Colombo", "0771234567");
+        Patient patient = new Patient("John Doe", "Colombo", "0771234567", "john.doe@example.com");
         Appointment mockAppointment = new Appointment(
                 "APT1234",
                 patient,

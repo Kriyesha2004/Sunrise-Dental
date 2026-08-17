@@ -9,6 +9,7 @@ public interface AppointmentService {
         String patientName,
         String patientAddress,
         String patientContact,
+        String patientEmail,
         String dentistName,
         String treatmentType,
         String dateStr,

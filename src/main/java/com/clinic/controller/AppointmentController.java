@@ -35,6 +35,7 @@ public class AppointmentController {
                     request.getPatientName(),
                     request.getPatientAddress(),
                     request.getPatientContact(),
+                    request.getPatientEmail(),
                     request.getDentistName(),
                     request.getTreatmentType(),
                     request.getAppointmentDate(),

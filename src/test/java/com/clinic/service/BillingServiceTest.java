@@ -27,6 +27,9 @@ public class BillingServiceTest {
     @Mock
     private BillDAO billDAO;
 
+    @Mock
+    private EmailService emailService;
+
     @InjectMocks
     private BillingServiceImpl billingService;
 
@@ -39,7 +42,7 @@ public class BillingServiceTest {
     public void testCalculateAndSaveBill_NewBill() {
         // Arrange
         String appNum = "APT9999";
-        Patient patient = new Patient("Test Patient", "Colombo", "0771112222");
+        Patient patient = new Patient("Test Patient", "Colombo", "0771112222", "test@example.com");
         Appointment appointment = new Appointment(
                 appNum,
                 patient,
@@ -75,7 +78,7 @@ public class BillingServiceTest {
     @Test
     public void testPayBill() {
         // Arrange
-        Patient patient = new Patient("Test Patient", "Colombo", "0771112222");
+        Patient patient = new Patient("Test Patient", "Colombo", "0771112222", "test@example.com");
         Appointment appointment = new Appointment(
                 "APT9999",
                 patient,
@@ -104,7 +107,7 @@ public class BillingServiceTest {
         when(appointmentDAO.save(any(Appointment.class))).thenAnswer(invocation -> invocation.getArgument(0));
 
         // Act
-        Bill paidBill = billingService.payBill(10L);
+        Bill paidBill = billingService.payBill(10L, "http://localhost:8080");
 
         // Assert
         assertNotNull(paidBill);

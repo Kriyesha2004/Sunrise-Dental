@@ -35,6 +35,10 @@ C:\xampp\tomcat\webapps\Dilina project\src\main\java\com\clinic\model\User.java
 C:\xampp\tomcat\webapps\Dilina project\src\main\java\com\clinic\service\AppointmentService.java
 C:\xampp\tomcat\webapps\Dilina project\src\main\java\com\clinic\service\AuthService.java
 C:\xampp\tomcat\webapps\Dilina project\src\main\java\com\clinic\service\BillingService.java
+C:\xampp\tomcat\webapps\Dilina project\src\main\java\com\clinic\service\EmailService.java
 C:\xampp\tomcat\webapps\Dilina project\src\main\java\com\clinic\service\impl\AppointmentServiceImpl.java
 C:\xampp\tomcat\webapps\Dilina project\src\main\java\com\clinic\service\impl\AuthServiceImpl.java
 C:\xampp\tomcat\webapps\Dilina project\src\main\java\com\clinic\service\impl\BillingServiceImpl.java
+C:\xampp\tomcat\webapps\Dilina project\src\main\java\com\clinic\service\impl\EmailServiceImpl.java
+C:\xampp\tomcat\webapps\Dilina project\src\main\java\com\clinic\service\impl\SmsServiceImpl.java
+C:\xampp\tomcat\webapps\Dilina project\src\main\java\com\clinic\service\SmsService.java

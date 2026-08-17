@@ -18,7 +18,8 @@ CREATE TABLE patients (
     patient_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     address VARCHAR(255),
-    contact_number VARCHAR(20) NOT NULL
+    contact_number VARCHAR(20) NOT NULL,
+    email VARCHAR(100) NOT NULL
 );
 
 -- Appointments Table

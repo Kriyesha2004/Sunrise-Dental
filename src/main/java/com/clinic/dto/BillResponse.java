@@ -13,12 +13,34 @@ public class BillResponse {
     private BigDecimal totalCost;
     private BigDecimal tax;
     private BigDecimal grandTotal;
+    private String email;
+    private String sentEmailMessage;
+
     private String paymentStatus;
     private LocalDateTime billDate;
 
     // Constructors
     public BillResponse() {}
 
+    public BillResponse(Long billId, String appointmentNumber, String patientName, String email, String treatmentType,
+                        BigDecimal treatmentCost, BigDecimal consultationFee, BigDecimal totalCost,
+                        BigDecimal tax, BigDecimal grandTotal, String paymentStatus, LocalDateTime billDate, String sentEmailMessage) {
+        this.billId = billId;
+        this.appointmentNumber = appointmentNumber;
+        this.patientName = patientName;
+        this.email = email;
+        this.treatmentType = treatmentType;
+        this.treatmentCost = treatmentCost;
+        this.consultationFee = consultationFee;
+        this.totalCost = totalCost;
+        this.tax = tax;
+        this.grandTotal = grandTotal;
+        this.paymentStatus = paymentStatus;
+        this.billDate = billDate;
+        this.sentEmailMessage = sentEmailMessage;
+    }
+
+    // Keep the old constructor for backwards compatibility / tests if needed
     public BillResponse(Long billId, String appointmentNumber, String patientName, String treatmentType,
                         BigDecimal treatmentCost, BigDecimal consultationFee, BigDecimal totalCost,
                         BigDecimal tax, BigDecimal grandTotal, String paymentStatus, LocalDateTime billDate) {
@@ -122,5 +144,21 @@ public class BillResponse {
 
     public void setBillDate(LocalDateTime billDate) {
         this.billDate = billDate;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSentEmailMessage() {
+        return sentEmailMessage;
+    }
+
+    public void setSentEmailMessage(String sentEmailMessage) {
+        this.sentEmailMessage = sentEmailMessage;
     }
 }

@@ -5,10 +5,10 @@ INSERT INTO users (username, password_hash, role, fullname) VALUES
 ('dentist', '$2a$10$ulhWR8QjfKQsBf2nR61KWu8QBbKYuUxhDqDhK22jiFH8se.7tiMsu', 'DENTIST', 'Dr. Smith');
 
 -- Insert initial patient records
-INSERT INTO patients (name, address, contact_number) VALUES 
-('John Doe', '123 Temple Rd, Colombo', '0771234567'),
-('Jane Silva', '45 Galle Rd, Galle', '0719876543'),
-('Robert Perera', '78 Kandy Rd, Kadawatha', '0723456789');
+INSERT INTO patients (name, address, contact_number, email) VALUES 
+('John Doe', '123 Temple Rd, Colombo', '0771234567', 'john.doe@example.com'),
+('Jane Silva', '45 Galle Rd, Galle', '0719876543', 'jane.silva@example.com'),
+('Robert Perera', '78 Kandy Rd, Kadawatha', '0723456789', 'robert.perera@example.com');
 
 -- Insert initial appointments
 INSERT INTO appointments (appointment_number, patient_id, dentist_name, treatment_type, appointment_date, appointment_time, consultation_fee, status) VALUES 

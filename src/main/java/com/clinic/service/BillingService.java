@@ -6,5 +6,6 @@ import java.util.Optional;
 public interface BillingService {
     Bill calculateAndSaveBill(String appointmentNumber);
     Optional<Bill> getBillByAppointmentNumber(String appointmentNumber);
-    Bill payBill(Long billId);
+    Bill payBill(Long billId, String baseUrl);
+    Optional<Bill> getBillById(Long billId);
 }

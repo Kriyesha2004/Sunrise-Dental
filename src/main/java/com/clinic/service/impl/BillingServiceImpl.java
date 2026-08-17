@@ -7,6 +7,7 @@ import com.clinic.factory.TreatmentCostCalculatorFactory;
 import com.clinic.model.Appointment;
 import com.clinic.model.Bill;
 import com.clinic.service.BillingService;
+import com.clinic.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,11 +20,13 @@ public class BillingServiceImpl implements BillingService {
 
     private final AppointmentDAO appointmentDAO;
     private final BillDAO billDAO;
+    private final EmailService emailService;
 
     @Autowired
-    public BillingServiceImpl(AppointmentDAO appointmentDAO, BillDAO billDAO) {
+    public BillingServiceImpl(AppointmentDAO appointmentDAO, BillDAO billDAO, EmailService emailService) {
         this.appointmentDAO = appointmentDAO;
         this.billDAO = billDAO;
+        this.emailService = emailService;
     }
 
     @Override
@@ -69,7 +72,7 @@ public class BillingServiceImpl implements BillingService {
 
     @Override
     @Transactional
-    public Bill payBill(Long billId) {
+    public Bill payBill(Long billId, String baseUrl) {
         Bill bill = billDAO.findById(billId)
                 .orElseThrow(() -> new IllegalArgumentException("Bill not found: " + billId));
         
@@ -81,6 +84,27 @@ public class BillingServiceImpl implements BillingService {
         appointment.setStatus("COMPLETED");
         appointmentDAO.save(appointment);
 
+        // Send Email notification containing a link to the bill invoice
+        String email = appointment.getPatient().getEmail();
+        if (email != null && !email.trim().isEmpty()) {
+            String invoiceUrl = baseUrl + "/api/bills/public/invoice/" + billId;
+            String subject = "Payment Receipt - Sunrise Dental Clinic (Inv: " + billId + ")";
+            String message = String.format(
+                "Dear %s,\n\nYour payment of $%s for appointment %s has been received.\nYou can view and print your invoice here: %s\n\nThank you for choosing Sunrise Dental Clinic!",
+                appointment.getPatient().getName(),
+                bill.getGrandTotal().setScale(2, RoundingMode.HALF_UP).toString(),
+                appointment.getAppointmentNumber(),
+                invoiceUrl
+            );
+            emailService.sendEmail(email, subject, message);
+            bill.setSentEmailMessage(message);
+        }
+
         return bill;
+    }
+
+    @Override
+    public Optional<Bill> getBillById(Long billId) {
+        return billDAO.findById(billId);
     }
 }

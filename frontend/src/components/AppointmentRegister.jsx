@@ -6,6 +6,7 @@ const AppointmentRegister = ({ axiosInstance }) => {
     patientName: '',
     patientAddress: '',
     patientContact: '',
+    patientEmail: '',
     dentistName: '',
     treatmentType: 'Cleaning',
     appointmentDate: '',
@@ -34,6 +35,10 @@ const AppointmentRegister = ({ axiosInstance }) => {
     if (!formData.patientContact.trim()) return 'Contact Number is required.';
     if (!/^[0-9+\-\s()]{7,20}$/.test(formData.patientContact.trim())) {
       return 'Please enter a valid contact number (numbers/spaces/hyphens, minimum 7 digits).';
+    }
+    if (!formData.patientEmail.trim()) return 'Email is required.';
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.patientEmail.trim())) {
+      return 'Please enter a valid email address.';
     }
     if (!formData.dentistName) return 'Please select a dentist.';
     if (!formData.treatmentType) return 'Please select a treatment type.';
@@ -68,6 +73,7 @@ const AppointmentRegister = ({ axiosInstance }) => {
         patientName: '',
         patientAddress: '',
         patientContact: '',
+        patientEmail: '',
         dentistName: '',
         treatmentType: 'Cleaning',
         appointmentDate: '',
@@ -155,6 +161,20 @@ const AppointmentRegister = ({ axiosInstance }) => {
               className="form-control form-control-premium"
               placeholder="e.g. 123 Temple Rd, Colombo"
               value={formData.patientAddress}
+              onChange={handleChange}
+              disabled={loading}
+            />
+          </div>
+
+          {/* Patient Email */}
+          <div className="col-12">
+            <label className="form-label fw-semibold" style={{ fontSize: '0.85rem' }}>Patient Email</label>
+            <input
+              type="email"
+              name="patientEmail"
+              className="form-control form-control-premium"
+              placeholder="e.g. john.doe@example.com"
+              value={formData.patientEmail}
               onChange={handleChange}
               disabled={loading}
             />

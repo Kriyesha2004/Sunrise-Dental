@@ -54,8 +54,14 @@ const BillingManager = ({ axiosInstance, preselectedAppointmentNumber }) => {
 
     try {
       const response = await axiosInstance.post(`/api/bills/pay/${bill.billId}`);
-      setBill(response.data);
-      setSuccessMsg('Payment processed successfully! Invoice status updated to PAID.');
+      const paidBill = response.data;
+      setBill(paidBill);
+      
+      let successText = 'Payment processed successfully! Invoice status updated to PAID.';
+      if (paidBill.sentEmailMessage) {
+        successText += `\n\n✉️ Email sent to ${paidBill.email || 'patient'}:\n"${paidBill.sentEmailMessage}"`;
+      }
+      setSuccessMsg(successText);
     } catch (err) {
       console.error(err);
       setError('Failed to process payment. Try again.');
@@ -97,7 +103,7 @@ const BillingManager = ({ axiosInstance, preselectedAppointmentNumber }) => {
       </form>
 
       {error && <div className="alert alert-danger py-2 px-3 mb-3 rounded-3 no-print">{error}</div>}
-      {successMsg && <div className="alert alert-success py-2 px-3 mb-3 rounded-3 no-print">{successMsg}</div>}
+      {successMsg && <div className="alert alert-success py-2 px-3 mb-3 rounded-3 no-print" style={{ whiteSpace: 'pre-wrap' }}>{successMsg}</div>}
 
       {/* Bill View */}
       {bill && (
@@ -120,17 +126,21 @@ const BillingManager = ({ axiosInstance, preselectedAppointmentNumber }) => {
               </div>
             </div>
 
-            {/* Patient & Appointment Details */}
+             {/* Patient & Appointment Details */}
             <div className="row mb-4 bg-light dark:bg-dark p-3 rounded-3 g-2 mx-0 border">
               <div className="col-sm-6">
                 <span className="text-muted d-block" style={{ fontSize: '0.75rem' }}>PATIENT NAME</span>
                 <span className="fw-bold text-dark dark:text-light">{bill.patientName}</span>
               </div>
               <div className="col-sm-6 text-sm-end">
+                <span className="text-muted d-block" style={{ fontSize: '0.75rem' }}>EMAIL ADDRESS</span>
+                <span className="fw-bold text-dark dark:text-light">{bill.email || 'N/A'}</span>
+              </div>
+              <div className="col-sm-6 mt-2 pt-2 border-top border-secondary-subtle">
                 <span className="text-muted d-block" style={{ fontSize: '0.75rem' }}>APPOINTMENT NO.</span>
                 <span className="fw-bold text-primary">{bill.appointmentNumber}</span>
               </div>
-              <div className="col-12 mt-2 pt-2 border-top border-secondary-subtle">
+              <div className="col-sm-6 text-sm-end mt-2 pt-2 border-top border-secondary-subtle">
                 <span className="text-muted d-block" style={{ fontSize: '0.75rem' }}>TREATMENT TYPE</span>
                 <span className="fw-semibold text-dark dark:text-light">{bill.treatmentType}</span>
               </div>

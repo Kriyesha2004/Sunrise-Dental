@@ -16,6 +16,10 @@ public class AppointmentRequest {
     @Pattern(regexp = "^[0-9+\\-\\s()]{7,20}$", message = "Please enter a valid phone number")
     private String patientContact;
 
+    @NotBlank(message = "Patient email is required")
+    @Email(message = "Please enter a valid email address")
+    private String patientEmail;
+
     @NotBlank(message = "Dentist name is required")
     private String dentistName;
 
@@ -98,5 +102,13 @@ public class AppointmentRequest {
 
     public void setConsultationFee(BigDecimal consultationFee) {
         this.consultationFee = consultationFee;
+    }
+
+    public String getPatientEmail() {
+        return patientEmail;
+    }
+
+    public void setPatientEmail(String patientEmail) {
+        this.patientEmail = patientEmail;
     }
 }

@@ -34,6 +34,7 @@ public class AppointmentServiceImpl implements AppointmentService {
             String patientName,
             String patientAddress,
             String patientContact,
+            String patientEmail,
             String dentistName,
             String treatmentType,
             String dateStr,
@@ -42,8 +43,14 @@ public class AppointmentServiceImpl implements AppointmentService {
 
         // Find or create patient
         Optional<Patient> patientOpt = patientDAO.findByNameAndContactNumber(patientName, patientContact);
-        Patient patient = patientOpt.orElseGet(() -> {
-            Patient p = new Patient(patientName, patientAddress, patientContact);
+        Patient patient = patientOpt.map(p -> {
+            if (p.getEmail() == null || !p.getEmail().equals(patientEmail)) {
+                p.setEmail(patientEmail);
+                return patientDAO.save(p);
+            }
+            return p;
+        }).orElseGet(() -> {
+            Patient p = new Patient(patientName, patientAddress, patientContact, patientEmail);
             return patientDAO.save(p);
         });
 

@@ -20,13 +20,17 @@ public class Patient {
     @Column(name = "contact_number", nullable = false, length = 20)
     private String contactNumber;
 
+    @Column(name = "email", nullable = false, length = 100)
+    private String email;
+
     // Constructors
     public Patient() {}
 
-    public Patient(String name, String address, String contactNumber) {
+    public Patient(String name, String address, String contactNumber, String email) {
         this.name = name;
         this.address = address;
         this.contactNumber = contactNumber;
+        this.email = email;
     }
 
     // Getters and Setters
@@ -60,5 +64,13 @@ public class Patient {
 
     public void setContactNumber(String contactNumber) {
         this.contactNumber = contactNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

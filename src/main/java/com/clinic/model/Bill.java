@@ -38,6 +38,9 @@ public class Bill {
     @Column(name = "payment_status", nullable = false, length = 20)
     private String paymentStatus = "UNPAID"; // UNPAID, PAID
 
+    @Transient
+    private String sentEmailMessage;
+
     // Constructors
     public Bill() {}
 
@@ -123,5 +126,13 @@ public class Bill {
 
     public void setPaymentStatus(String paymentStatus) {
         this.paymentStatus = paymentStatus;
+    }
+
+    public String getSentEmailMessage() {
+        return sentEmailMessage;
+    }
+
+    public void setSentEmailMessage(String sentEmailMessage) {
+        this.sentEmailMessage = sentEmailMessage;
     }
 }
