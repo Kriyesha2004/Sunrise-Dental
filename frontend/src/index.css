@@ -1,38 +1,48 @@
-/* Global Custom CSS with Premium Glassmorphism Theme */
+/* Global Custom CSS with Premium Royal Blue & Powder Pink Theme */
 @import 'bootstrap/dist/css/bootstrap.min.css';
 
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-  --primary-color: #3b82f6;
-  --primary-hover: #2563eb;
-  --secondary-color: #10b981;
-  --accent-color: #8b5cf6;
+  --primary-color: #3447AA; /* Royal Blue */
+  --primary-hover: #293888;
+  --secondary-color: #e5cbd2; /* Muted Powder Pink for light mode */
+  --accent-color: #FBEAEB; /* Powder Pink */
   --font-family: 'Plus Jakarta Sans', sans-serif;
   
+  --text-on-primary: white;
+  --text-on-secondary: #3447AA;
+
   /* Light Mode Variables */
-  --bg-gradient: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
-  --panel-bg: rgba(255, 255, 255, 0.7);
-  --panel-border: rgba(255, 255, 255, 0.5);
-  --text-primary: #1e293b;
-  --text-muted: #64748b;
-  --shadow-color: rgba(148, 163, 184, 0.15);
-  --card-bg: #ffffff;
-  --input-bg: #f8fafc;
-  --input-border: #cbd5e1;
+  --bg-gradient: linear-gradient(135deg, #ffffff 0%, #fff5f5 50%, #FBEAEB 100%); /* Soft Powder Pink gradient */
+  --panel-bg: rgba(255, 255, 255, 0.75);
+  --panel-border: rgba(52, 71, 170, 0.15);
+  --text-primary: #1c2759; /* Deep navy text */
+  --text-muted: #3447AA; /* Royal Blue muted text */
+  --shadow-color: rgba(52, 71, 170, 0.08);
+  --card-bg: rgba(255, 255, 255, 0.85);
+  --input-bg: #ffffff;
+  --input-border: #FBEAEB;
 }
 
 [data-theme="dark"] {
   /* Dark Mode Variables */
-  --bg-gradient: linear-gradient(135deg, #0f172a 0%, #020617 100%);
-  --panel-bg: rgba(30, 41, 59, 0.6);
-  --panel-border: rgba(255, 255, 255, 0.08);
-  --text-primary: #f8fafc;
-  --text-muted: #94a3b8;
-  --shadow-color: rgba(0, 0, 0, 0.3);
-  --card-bg: #1e293b;
-  --input-bg: #0f172a;
-  --input-border: #334155;
+  --bg-gradient: linear-gradient(135deg, #101c4f 0%, #080e29 100%); /* Deep Midnight Royal Blue */
+  --panel-bg: rgba(16, 28, 79, 0.65);
+  --panel-border: rgba(251, 234, 235, 0.15);
+  --text-primary: #FBEAEB; /* Powder pink primary text */
+  --text-muted: #a3b2e5; /* Soft lavender-blue text */
+  --shadow-color: rgba(0, 0, 0, 0.45);
+  --card-bg: rgba(22, 38, 102, 0.75);
+  --input-bg: #070d2b;
+  --input-border: #3447AA;
+  
+  --primary-color: #FBEAEB; /* Glowing pink accent */
+  --primary-hover: #ffffff;
+  --secondary-color: #3447AA; /* Royal blue secondary */
+  
+  --text-on-primary: #3447AA; /* Dark Royal Blue text on bright Powder Pink */
+  --text-on-secondary: white;
 }
 
 body {
@@ -58,7 +68,7 @@ body {
 
 .glass-panel:hover {
   box-shadow: 0 12px 40px 0 var(--shadow-color);
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 
 .glass-card {
@@ -71,39 +81,40 @@ body {
 
 /* Custom Buttons */
 .btn-premium-primary {
-  background: linear-gradient(135deg, var(--primary-color) 0%, #1d4ed8 100%);
-  color: white;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-hover) 100%);
+  color: var(--text-on-primary) !important;
   border: none;
   border-radius: 8px;
   font-weight: 600;
   padding: 10px 24px;
-  box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.4);
+  box-shadow: 0 4px 14px 0 rgba(52, 71, 170, 0.3);
   transition: all 0.2s ease;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .btn-premium-primary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px 0 rgba(59, 130, 246, 0.5);
-  background: linear-gradient(135deg, var(--primary-hover) 0%, #1e40af 100%);
-  color: white;
+  box-shadow: 0 6px 20px 0 rgba(52, 71, 170, 0.4);
+  background: linear-gradient(135deg, var(--primary-hover) 0%, #1e2a66 100%);
+  color: var(--text-on-primary) !important;
 }
 
 .btn-premium-secondary {
-  background: linear-gradient(135deg, var(--secondary-color) 0%, #047857 100%);
-  color: white;
+  background: linear-gradient(135deg, var(--secondary-color) 0%, #d8b8c0 100%);
+  color: var(--text-on-secondary) !important;
   border: none;
   border-radius: 8px;
   font-weight: 600;
   padding: 10px 24px;
-  box-shadow: 0 4px 14px 0 rgba(16, 185, 129, 0.4);
+  box-shadow: 0 4px 14px 0 rgba(229, 203, 210, 0.3);
   transition: all 0.2s ease;
 }
 
 .btn-premium-secondary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px 0 rgba(16, 185, 129, 0.5);
-  background: linear-gradient(135deg, #059669 0%, #065f46 100%);
-  color: white;
+  box-shadow: 0 6px 20px 0 rgba(229, 203, 210, 0.4);
+  background: linear-gradient(135deg, #c7adb4 0%, #b2939a 100%);
+  color: var(--text-on-secondary) !important;
 }
 
 /* Premium Inputs */
@@ -119,8 +130,74 @@ body {
 .form-control-premium:focus {
   background-color: var(--input-bg);
   border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+  box-shadow: 0 0 0 3px rgba(52, 71, 170, 0.2);
   color: var(--text-primary);
+}
+
+/* Bootstrap Overrides to match theme colors */
+.text-primary {
+  color: var(--primary-color) !important;
+}
+.text-muted {
+  color: var(--text-muted) !important;
+}
+.bg-primary {
+  background-color: var(--primary-color) !important;
+}
+.bg-primary-subtle {
+  background-color: rgba(52, 71, 170, 0.1) !important;
+}
+.border-primary {
+  border-color: var(--primary-color) !important;
+}
+.btn-outline-primary {
+  color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+}
+.btn-outline-primary:hover {
+  background-color: var(--primary-color) !important;
+  color: var(--text-on-primary) !important;
+}
+.btn-light {
+  background-color: var(--input-bg) !important;
+  border-color: var(--panel-border) !important;
+  color: var(--text-primary) !important;
+}
+.btn-light:hover {
+  background-color: var(--accent-color) !important;
+  color: var(--text-primary) !important;
+}
+.badge.bg-primary {
+  background-color: var(--primary-color) !important;
+  color: var(--text-on-primary) !important;
+}
+.badge.bg-success {
+  background-color: var(--secondary-color) !important;
+  color: var(--text-on-secondary) !important;
+}
+.btn-link {
+  color: var(--text-primary) !important;
+}
+.btn-link:hover {
+  color: var(--primary-color) !important;
+}
+
+/* Table Premium styling */
+.table-premium {
+  color: var(--text-primary) !important;
+}
+.table-premium th {
+  color: var(--text-primary) !important;
+  background-color: transparent !important;
+  border-bottom: 2px solid var(--panel-border) !important;
+}
+.table-premium td {
+  color: var(--text-primary) !important;
+  background-color: transparent !important;
+  border-bottom: 1px solid var(--panel-border) !important;
+}
+.table-premium tr:hover td {
+  background-color: rgba(255, 255, 255, 0.05) !important;
 }
 
 /* Micro-animations */
