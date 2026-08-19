@@ -57,11 +57,7 @@ const BillingManager = ({ axiosInstance, preselectedAppointmentNumber }) => {
       const paidBill = response.data;
       setBill(paidBill);
       
-      let successText = 'Payment processed successfully! Invoice status updated to PAID.';
-      if (paidBill.sentEmailMessage) {
-        successText += `\n\n✉️ Email sent to ${paidBill.email || 'patient'}:\n"${paidBill.sentEmailMessage}"`;
-      }
-      setSuccessMsg(successText);
+      setSuccessMsg('Payment processed successfully! Invoice status updated to PAID.');
     } catch (err) {
       console.error(err);
       setError('Failed to process payment. Try again.');
