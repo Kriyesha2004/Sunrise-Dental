@@ -4,14 +4,18 @@ C:\xampp\tomcat\webapps\Dilina project\src\main\java\com\clinic\controller\Appoi
 C:\xampp\tomcat\webapps\Dilina project\src\main\java\com\clinic\controller\AuthController.java
 C:\xampp\tomcat\webapps\Dilina project\src\main\java\com\clinic\controller\BillController.java
 C:\xampp\tomcat\webapps\Dilina project\src\main\java\com\clinic\controller\HealthController.java
+C:\xampp\tomcat\webapps\Dilina project\src\main\java\com\clinic\controller\HelpGuideController.java
+C:\xampp\tomcat\webapps\Dilina project\src\main\java\com\clinic\controller\NoteController.java
 C:\xampp\tomcat\webapps\Dilina project\src\main\java\com\clinic\dao\AppointmentDAO.java
 C:\xampp\tomcat\webapps\Dilina project\src\main\java\com\clinic\dao\AppointmentRepository.java
 C:\xampp\tomcat\webapps\Dilina project\src\main\java\com\clinic\dao\BillDAO.java
 C:\xampp\tomcat\webapps\Dilina project\src\main\java\com\clinic\dao\BillRepository.java
+C:\xampp\tomcat\webapps\Dilina project\src\main\java\com\clinic\dao\HelpGuideRepository.java
 C:\xampp\tomcat\webapps\Dilina project\src\main\java\com\clinic\dao\impl\AppointmentDAOImpl.java
 C:\xampp\tomcat\webapps\Dilina project\src\main\java\com\clinic\dao\impl\BillDAOImpl.java
 C:\xampp\tomcat\webapps\Dilina project\src\main\java\com\clinic\dao\impl\PatientDAOImpl.java
 C:\xampp\tomcat\webapps\Dilina project\src\main\java\com\clinic\dao\impl\UserDAOImpl.java
+C:\xampp\tomcat\webapps\Dilina project\src\main\java\com\clinic\dao\NoteRepository.java
 C:\xampp\tomcat\webapps\Dilina project\src\main\java\com\clinic\dao\PatientDAO.java
 C:\xampp\tomcat\webapps\Dilina project\src\main\java\com\clinic\dao\PatientRepository.java
 C:\xampp\tomcat\webapps\Dilina project\src\main\java\com\clinic\dao\UserDAO.java
@@ -30,6 +34,8 @@ C:\xampp\tomcat\webapps\Dilina project\src\main\java\com\clinic\factory\Treatmen
 C:\xampp\tomcat\webapps\Dilina project\src\main\java\com\clinic\factory\TreatmentCostCalculatorFactory.java
 C:\xampp\tomcat\webapps\Dilina project\src\main\java\com\clinic\model\Appointment.java
 C:\xampp\tomcat\webapps\Dilina project\src\main\java\com\clinic\model\Bill.java
+C:\xampp\tomcat\webapps\Dilina project\src\main\java\com\clinic\model\HelpGuide.java
+C:\xampp\tomcat\webapps\Dilina project\src\main\java\com\clinic\model\Note.java
 C:\xampp\tomcat\webapps\Dilina project\src\main\java\com\clinic\model\Patient.java
 C:\xampp\tomcat\webapps\Dilina project\src\main\java\com\clinic\model\User.java
 C:\xampp\tomcat\webapps\Dilina project\src\main\java\com\clinic\service\AppointmentService.java

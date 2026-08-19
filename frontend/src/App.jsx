@@ -6,7 +6,14 @@ import AppointmentRegister from './components/AppointmentRegister';
 import AppointmentSearch from './components/AppointmentSearch';
 import BillingManager from './components/BillingManager';
 import HelpSection from './components/HelpSection';
-import { RiCalendarCheckLine, RiSearchLine, RiFileList3Line, RiQuestionLine } from 'react-icons/ri';
+import StaffNotes from './components/StaffNotes';
+import { 
+  RiCalendarCheckLine, 
+  RiSearchLine, 
+  RiFileList3Line, 
+  RiQuestionLine, 
+  RiMessage3Line 
+} from 'react-icons/ri';
 
 // Set up Axios with CORS support and smart base URL selection
 const baseURL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
@@ -136,6 +143,17 @@ function App() {
                   <RiQuestionLine size={18} />
                   <span>Help Guide</span>
                 </button>
+
+                <button
+                  onClick={() => setActiveTab('notes')}
+                  className={`btn d-flex align-items-center gap-2 px-3 py-2.5 text-start w-100 border-0 ${
+                    activeTab === 'notes' ? 'btn-premium-primary text-white' : 'btn-link text-decoration-none text-muted'
+                  }`}
+                  style={{ borderRadius: '8px', fontWeight: '500', fontSize: '0.9rem' }}
+                >
+                  <RiMessage3Line size={18} />
+                  <span>Staff Notes</span>
+                </button>
               </div>
             </div>
 
@@ -144,7 +162,8 @@ function App() {
               {activeTab === 'register' && <AppointmentRegister axiosInstance={axiosInstance} />}
               {activeTab === 'search' && <AppointmentSearch axiosInstance={axiosInstance} onSelectForBilling={handleSelectForBilling} />}
               {activeTab === 'billing' && <BillingManager axiosInstance={axiosInstance} preselectedAppointmentNumber={preselectedAppNumber} />}
-              {activeTab === 'help' && <HelpSection />}
+              {activeTab === 'help' && <HelpSection user={user} axiosInstance={axiosInstance} />}
+              {activeTab === 'notes' && <StaffNotes user={user} axiosInstance={axiosInstance} />}
             </div>
           </div>
         )}

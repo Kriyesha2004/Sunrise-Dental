@@ -3,6 +3,8 @@ DROP TABLE IF EXISTS bills;
 DROP TABLE IF EXISTS appointments;
 DROP TABLE IF EXISTS patients;
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS notes;
+DROP TABLE IF EXISTS help_guides;
 
 -- Users Table (Staff Auth)
 CREATE TABLE users (
@@ -48,4 +50,23 @@ CREATE TABLE bills (
     bill_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     payment_status VARCHAR(20) NOT NULL DEFAULT 'UNPAID',
     FOREIGN KEY (appointment_id) REFERENCES appointments(appointment_id) ON DELETE CASCADE
+);
+
+-- Help Guides Table
+CREATE TABLE help_guides (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    step_instructions TEXT NOT NULL,
+    design_constraints TEXT NOT NULL
+);
+
+-- Notes Table
+CREATE TABLE notes (
+    note_id INT AUTO_INCREMENT PRIMARY KEY,
+    sender_username VARCHAR(50) NOT NULL,
+    sender_fullname VARCHAR(100) NOT NULL,
+    sender_role VARCHAR(20) NOT NULL,
+    receiver_role VARCHAR(20) NOT NULL,
+    content TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    is_liked BOOLEAN DEFAULT FALSE
 );
