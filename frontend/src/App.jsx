@@ -7,12 +7,14 @@ import AppointmentSearch from './components/AppointmentSearch';
 import BillingManager from './components/BillingManager';
 import HelpSection from './components/HelpSection';
 import StaffNotes from './components/StaffNotes';
+import HistoryManager from './components/HistoryManager';
 import { 
   RiCalendarCheckLine, 
   RiSearchLine, 
   RiFileList3Line, 
   RiQuestionLine, 
-  RiMessage3Line 
+  RiMessage3Line,
+  RiHistoryLine
 } from 'react-icons/ri';
 
 // Set up Axios with CORS support and smart base URL selection
@@ -154,6 +156,19 @@ function App() {
                   <RiMessage3Line size={18} />
                   <span>Staff Notes</span>
                 </button>
+
+                {(user?.role === 'ADMIN' || user?.role === 'DENTIST') && (
+                  <button
+                    onClick={() => setActiveTab('history')}
+                    className={`btn d-flex align-items-center gap-2 px-3 py-2.5 text-start w-100 border-0 ${
+                      activeTab === 'history' ? 'btn-premium-primary text-white' : 'btn-link text-decoration-none text-muted'
+                    }`}
+                    style={{ borderRadius: '8px', fontWeight: '500', fontSize: '0.9rem' }}
+                  >
+                    <RiHistoryLine size={18} />
+                    <span>History Logs</span>
+                  </button>
+                )}
               </div>
             </div>
 
@@ -164,6 +179,9 @@ function App() {
               {activeTab === 'billing' && <BillingManager axiosInstance={axiosInstance} preselectedAppointmentNumber={preselectedAppNumber} />}
               {activeTab === 'help' && <HelpSection user={user} axiosInstance={axiosInstance} />}
               {activeTab === 'notes' && <StaffNotes user={user} axiosInstance={axiosInstance} />}
+              {activeTab === 'history' && (user?.role === 'ADMIN' || user?.role === 'DENTIST') && (
+                <HistoryManager user={user} axiosInstance={axiosInstance} />
+              )}
             </div>
           </div>
         )}

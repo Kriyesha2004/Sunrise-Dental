@@ -36,4 +36,14 @@ public class AppointmentDAOImpl implements AppointmentDAO {
     public Appointment save(Appointment appointment) {
         return appointmentRepository.save(appointment);
     }
+
+    @Override
+    public java.util.List<Appointment> findAll() {
+        return appointmentRepository.findAll();
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        appointmentRepository.deleteById(id);
+    }
 }

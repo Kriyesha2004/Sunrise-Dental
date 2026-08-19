@@ -36,4 +36,14 @@ public class BillDAOImpl implements BillDAO {
     public Bill save(Bill bill) {
         return billRepository.save(bill);
     }
+
+    @Override
+    public java.util.List<Bill> findAll() {
+        return billRepository.findAll();
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        billRepository.deleteById(id);
+    }
 }

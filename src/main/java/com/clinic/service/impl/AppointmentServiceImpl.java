@@ -82,4 +82,15 @@ public class AppointmentServiceImpl implements AppointmentService {
     public Optional<Appointment> getAppointmentByNumber(String appointmentNumber) {
         return appointmentDAO.findByAppointmentNumber(appointmentNumber);
     }
+
+    @Override
+    public java.util.List<Appointment> getAllAppointments() {
+        return appointmentDAO.findAll();
+    }
+
+    @Override
+    @Transactional
+    public void deleteAppointment(Long id) {
+        appointmentDAO.deleteById(id);
+    }
 }

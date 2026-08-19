@@ -61,4 +61,33 @@ public class AppointmentController {
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Appointment not found with number: " + appointmentNumber);
     }
+
+    @GetMapping
+    public ResponseEntity<?> getAllAppointments(HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized: Please login first");
+        }
+        if (!"ADMIN".equalsIgnoreCase(user.getRole()) && !"DENTIST".equalsIgnoreCase(user.getRole())) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Forbidden: Access restricted to Admin and Dentist");
+        }
+        return ResponseEntity.ok(appointmentService.getAllAppointments());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteAppointment(@PathVariable Long id, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized: Please login first");
+        }
+        if (!"ADMIN".equalsIgnoreCase(user.getRole()) && !"DENTIST".equalsIgnoreCase(user.getRole())) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Forbidden: Access restricted to Admin and Dentist");
+        }
+        try {
+            appointmentService.deleteAppointment(id);
+            return ResponseEntity.ok("Appointment deleted successfully");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error deleting appointment: " + e.getMessage());
+        }
+    }
 }

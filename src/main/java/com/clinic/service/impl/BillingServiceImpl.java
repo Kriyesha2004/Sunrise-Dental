@@ -107,4 +107,15 @@ public class BillingServiceImpl implements BillingService {
     public Optional<Bill> getBillById(Long billId) {
         return billDAO.findById(billId);
     }
+
+    @Override
+    public java.util.List<Bill> getAllBills() {
+        return billDAO.findAll();
+    }
+
+    @Override
+    @org.springframework.transaction.annotation.Transactional
+    public void deleteBill(Long id) {
+        billDAO.deleteById(id);
+    }
 }

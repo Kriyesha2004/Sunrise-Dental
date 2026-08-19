@@ -2,6 +2,7 @@ package com.clinic.service;
 
 import com.clinic.model.Appointment;
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Optional;
 
 public interface AppointmentService {
@@ -18,4 +19,6 @@ public interface AppointmentService {
     );
 
     Optional<Appointment> getAppointmentByNumber(String appointmentNumber);
+    List<Appointment> getAllAppointments();
+    void deleteAppointment(Long id);
 }

@@ -1,6 +1,7 @@
 package com.clinic.service;
 
 import com.clinic.model.Bill;
+import java.util.List;
 import java.util.Optional;
 
 public interface BillingService {
@@ -8,4 +9,6 @@ public interface BillingService {
     Optional<Bill> getBillByAppointmentNumber(String appointmentNumber);
     Bill payBill(Long billId, String baseUrl);
     Optional<Bill> getBillById(Long billId);
+    List<Bill> getAllBills();
+    void deleteBill(Long id);
 }

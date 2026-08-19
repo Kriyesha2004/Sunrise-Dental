@@ -308,4 +308,37 @@ public class BillController {
                 bill.getSentEmailMessage()
         );
     }
+
+    @GetMapping
+    public ResponseEntity<?> getAllBills(HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized: Please login first");
+        }
+        if (!"ADMIN".equalsIgnoreCase(user.getRole()) && !"DENTIST".equalsIgnoreCase(user.getRole())) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Forbidden: Access restricted to Admin and Dentist");
+        }
+        java.util.List<Bill> bills = billingService.getAllBills();
+        java.util.List<BillResponse> responses = bills.stream()
+                .map(this::mapToResponse)
+                .collect(java.util.stream.Collectors.toList());
+        return ResponseEntity.ok(responses);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteBill(@PathVariable Long id, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized: Please login first");
+        }
+        if (!"ADMIN".equalsIgnoreCase(user.getRole()) && !"DENTIST".equalsIgnoreCase(user.getRole())) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Forbidden: Access restricted to Admin and Dentist");
+        }
+        try {
+            billingService.deleteBill(id);
+            return ResponseEntity.ok("Bill deleted successfully");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error deleting bill: " + e.getMessage());
+        }
+    }
 }
